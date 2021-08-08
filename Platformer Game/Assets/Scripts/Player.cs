@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidBody;
     Animator animator;
     bool isGrounded = false;
+
+    public Transform keyFollowPoint;
+
+    public key followingKey;
+
     // Start is called before the first frame update
     void Start()
     {
