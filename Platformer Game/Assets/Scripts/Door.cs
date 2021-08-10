@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+enum DoorType
+{
+    Teleport,
+    New_Level
+}
+
 public class Door : MonoBehaviour
 {
     private Player thePlayer;
@@ -11,6 +17,10 @@ public class Door : MonoBehaviour
     public Sprite doorOpenSprite; // after using the key
 
     public bool doorOpen, waitingToOpen;
+
+    //if type is teleport only then Set teleportTo variable
+    [SerializeField] DoorType doorType;
+    [SerializeField] Transform teleportTo;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +46,16 @@ public class Door : MonoBehaviour
 
         if (doorOpen)
         {
-            SceneManager.LoadScene(0);
-            Debug.Log("next level");
+            if(doorType == DoorType.New_Level)
+            {
+                SceneManager.LoadScene(0);
+                Debug.Log("next level");
+            }
+            if(doorType == DoorType.Teleport)
+            {
+                thePlayer.transform.position = teleportTo.position;
+                Destroy(gameObject);
+            }
         }
     }
 
