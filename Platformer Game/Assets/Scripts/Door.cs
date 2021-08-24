@@ -22,9 +22,11 @@ public class Door : MonoBehaviour
     [SerializeField] DoorType doorType;
     [SerializeField] Transform teleportTo;
 
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         thePlayer = FindObjectOfType<Player>();
     }
 
@@ -48,8 +50,7 @@ public class Door : MonoBehaviour
         {
             if(doorType == DoorType.New_Level)
             {
-                SceneManager.LoadScene(0);
-                Debug.Log("next level");
+                gameManager.Win();
             }
             if(doorType == DoorType.Teleport)
             {

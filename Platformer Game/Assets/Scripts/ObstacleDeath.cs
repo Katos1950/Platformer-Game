@@ -8,7 +8,8 @@ public class ObstacleDeath : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            Debug.Log("Death");
+            Destroy(collision.gameObject);
+            FindObjectOfType<GameManager>().Death();
         }
     }
 }
